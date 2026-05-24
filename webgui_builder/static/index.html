@@ -1,0 +1,140 @@
+﻿<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Menu Builder</title>
+    <link rel="stylesheet" href="styles.css?v=20260315_9" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <div id="app">
+      <header class="app-header">
+        <div>
+          <div class="app-title">Menu Builder</div>
+          <div class="app-subtitle">Визуальный редактор логики меню из database/content.json</div>
+        </div>
+        <div class="app-actions">
+          <div class="tab-switch" role="tablist" aria-label="Режимы">
+            <button id="tab-interface" class="tab-btn active" role="tab" aria-selected="true">
+              Интерфейс
+            </button>
+            <button id="tab-inventory" class="tab-btn" role="tab" aria-selected="false">
+              Инвентарь
+            </button>
+          </div>
+          <button id="reload-btn" class="ghost">Перезагрузить</button>
+          <button id="save-btn" class="primary">Сохранить</button>
+          <div id="status" class="status">Готово</div>
+        </div>
+      </header>
+
+      <div id="interface-view" class="app-body">
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <div class="sidebar-title">Структура</div>
+            <button id="add-section" class="ghost small">+ Раздел</button>
+          </div>
+          <div id="tree" class="tree"></div>
+        </aside>
+
+        <main class="main">
+          <div class="main-grid main-grid-primary">
+            <section class="panel" id="editor-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-title">Редактор</div>
+                  <div id="editor-subtitle" class="panel-subtitle"></div>
+                </div>
+                <div class="panel-actions" id="editor-actions"></div>
+              </div>
+              <div id="editor" class="panel-body"></div>
+            </section>
+
+            <section class="panel" id="preview-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-title">Превью</div>
+                  <div class="panel-subtitle">Как будет выглядеть сообщение в Telegram</div>
+                </div>
+              </div>
+              <div id="preview" class="panel-body"></div>
+            </section>
+          </div>
+
+          <div class="main-grid main-grid-secondary">
+            <section class="panel" id="json-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-title">JSON</div>
+                  <div class="panel-subtitle">Быстрая проверка структуры</div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <textarea id="json-view" readonly></textarea>
+              </div>
+            </section>
+
+            <section class="panel" id="warnings-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-title">Проверка</div>
+                  <div class="panel-subtitle">Ошибки и подсказки</div>
+                </div>
+              </div>
+              <div id="warnings" class="panel-body"></div>
+            </section>
+
+            <section class="panel" id="help-panel">
+              <div class="panel-header">
+                <div>
+                  <div class="panel-title">Пояснения</div>
+                  <div class="panel-subtitle">Как влияют параметры</div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="help-item">
+                  <div class="help-title">Порядок (order)</div>
+                  <div class="help-text">
+                    Меньше число — выше кнопка в списке. Пример: у двух кнопок порядок
+                    10 и 20, первой будет та, где 10.
+                  </div>
+                </div>
+                <div class="help-item">
+                  <div class="help-title">Ряд (row)</div>
+                  <div class="help-text">
+                    Одинаковый row у элементов — они в одной строке. Пример: две кнопки
+                    с row=1 окажутся рядом.
+                  </div>
+                </div>
+                <div class="help-item">
+                  <div class="help-title">Разделы</div>
+                  <div class="help-text">
+                    Можно создавать сколько угодно разделов — ограничений нет.
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <div id="inventory-view" class="inventory-view hidden">
+        <section class="panel inventory-panel" id="inventory-panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Инвентарь</div>
+              <div class="panel-subtitle">Поштучные товары (пусто = безлимит)</div>
+            </div>
+          </div>
+          <div class="panel-body" id="inventory-body"></div>
+        </section>
+      </div>
+    </div>
+
+    <script src="app.js?v=20260315_9"></script>
+  </body>
+</html>
